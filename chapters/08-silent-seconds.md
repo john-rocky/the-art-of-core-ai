@@ -31,6 +31,22 @@ A word on Chapter 4's FP4. The TensorOps FP4 instructions technically opened the
 
 One more honest note. Our attempts to make this matrix engine pay off for prefill have not yet won in measurements on the A19 device at hand (M5 unverified). What reliably benefits today is the batched computation of diffusion and encoders. The direction the chip is designed toward, and what software can extract from it today, deserve to be written down as separate things.
 
+The silence has another face.
+
+Paste in a long document, ask, get an answer. Don't end the conversation there — ask a second question. Trace what happens through prefill's mechanism, and something strange shows up.
+
+Each turn, the chat hands the model the entire conversation again. The system prompt, the document you pasted, the exchanges so far — all of it, not a word changed, read again from the top to rebuild the KV cache. The second question's silence is longer than the first: on top of the document, it re-reads the first answer too. The more turns you stack, the longer the silence grows.
+
+Here the common sense flips over once.
+
+If the silence is a compute contest, the fix is "make the computation faster" — the TensorOps story just now. But this second silence is not long because the computation is slow. It is long because **the same computation is being done again**. Before making it faster, you could just not do it.
+
+The material for not doing it is already in hand: the KV cache built on the first turn. The head of the second prompt — the unchanged whole — is answered by that cache as-is. Only the few dozen tokens of the newly added question need reading.
+
+The measurement runs like this. At a 4000-token context, the second question's silence dropped from **23 seconds to 0.23 seconds**. A hundredth. Not by computing faster — by never reading it again. And the output doesn't change by a single token: put the same tokens in the same positions, and the KV isn't off by one bit.
+
+This is the plainest form of this book's thesis. Much of the cleverness so far was "move fewer bytes." This is "never move, a second time, the bytes you already moved." Not fewer — gone.
+
 Finally, a guide to the rest of this part.
 
 Prefill is not the only place where "computation rules." There are generative models for whom **the compute world is home turf** in the first place.
