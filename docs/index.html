@@ -1172,6 +1172,14 @@ for prefill have not yet won in measurements on the A19 device at hand
 of diffusion and encoders. The direction the chip is designed toward,
 and what software can extract from it today, deserve to be written down
 as separate things.</p>
+<p>The silence has another face.</p>
+<p>Paste in a long document, ask, get an answer. Don't end the conversation there — ask a second question. Trace what happens through prefill's mechanism, and something strange shows up.</p>
+<p>Each turn, the chat hands the model the entire conversation again. The system prompt, the document you pasted, the exchanges so far — all of it, not a word changed, read again from the top to rebuild the KV cache. The second question's silence is longer than the first: on top of the document, it re-reads the first answer too. The more turns you stack, the longer the silence grows.</p>
+<p>Here the common sense flips over once.</p>
+<p>If the silence is a compute contest, the fix is "make the computation faster" — the TensorOps story just now. But this second silence is not long because the computation is slow. It is long because <strong>the same computation is being done again</strong>. Before making it faster, you could just not do it.</p>
+<p>The material for not doing it is already in hand: the KV cache built on the first turn. The head of the second prompt — the unchanged whole — is answered by that cache as-is. Only the few dozen tokens of the newly added question need reading.</p>
+<p>The measurement runs like this. At a 4000-token context, the second question's silence dropped from <strong>23 seconds to 0.23 seconds</strong>. A hundredth. Not by computing faster — by never reading it again. And the output doesn't change by a single token: put the same tokens in the same positions, and the KV isn't off by one bit.</p>
+<p>This is the plainest form of this book's thesis. Much of the cleverness so far was "move fewer bytes." This is "never move, a second time, the bytes you already moved." Not fewer — gone.</p>
 <p>Finally, a guide to the rest of this part.</p>
 <p>Prefill is not the only place where "computation rules." There are
 generative models for whom <strong>the compute world is home
