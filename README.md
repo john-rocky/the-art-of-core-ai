@@ -10,7 +10,7 @@ Macs on Apple's Core AI framework (iOS/macOS 27) — LLMs, MoE, diffusion LLMs, 
 vision — every number reproducible, every wrong guess kept in the text.
 
 📕 **Read online:** https://john-rocky.github.io/the-art-of-core-ai/ (single page) — or browse the chapters below.
-🇯🇵 The original Japanese edition is published on Zenn.
+🇯🇵 The original Japanese edition is published [on Zenn](https://zenn.dev/mlboydaisuke/books/coreai-textbook).
 
 ## Chapters
 
