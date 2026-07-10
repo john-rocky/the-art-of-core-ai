@@ -1,0 +1,30 @@
+# The Art of Core AI
+
+> Field techniques for putting AI on your phone — a free book written entirely from real
+> measurements: 30+ models (LLMs, MoE, diffusion LLMs, speech, music, vision) shipped to real
+> iPhones and Macs on Apple's Core AI framework (iOS/macOS 27). Core thesis: on-device AI is
+> governed by how many bytes you move, not how fast the chip computes.
+
+## Book
+
+- [Full book, single page](https://john-rocky.github.io/the-art-of-core-ai/): all 13 chapters + labs
+- [Chapter sources on GitHub](https://github.com/john-rocky/the-art-of-core-ai): markdown per chapter
+- [Japanese edition on Zenn](https://zenn.dev/mlboydaisuke/books/coreai-textbook): the original
+
+## Topics covered
+
+- Why memory bandwidth, not compute, decides on-device LLM speed (ch. 1, 2, 11)
+- The Apple Neural Engine vs GPU trade-off, measured (ch. 3, 10)
+- Quantization: what 4-bit actually breaks, int8/int4/QAT (ch. 4)
+- Mixture-of-Experts on phones (ch. 5)
+- KV caches, prefix caching, speculative decoding (ch. 6, 7)
+- Prefill vs decode, chunked prefill (ch. 8)
+- Diffusion LLMs and parallel decoding (ch. 9)
+- Shipping: bundles, distribution, being a first-class citizen on the platform (ch. 12, 13)
+
+## Related projects by the same author
+
+- [coreai-model-zoo](https://github.com/john-rocky/coreai-model-zoo): 49 models converted to Core AI, device-verified, with conversion recipes and benchmarks
+- [coreai-kit](https://github.com/john-rocky/coreai-kit): run any zoo model in one line of Swift; FoundationModels-compatible
+- [awesome-core-ai](https://github.com/john-rocky/awesome-core-ai): curated Core AI ecosystem resources
+- [Hugging Face models](https://huggingface.co/mlboydaisuke): downloadable .aimodel bundles
