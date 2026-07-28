@@ -43,6 +43,20 @@ vision — every number reproducible, every wrong guess kept in the text.
 | 5 | [Honest Measurement](chapters/lab-5-honest-measurement.md) |
 | 6 | [Recipe Index](chapters/lab-6-recipe-index.md) |
 
+## Where the measurements came from
+
+Every number in this book was measured on the ports in the Core AI model zoo, and the working
+notes behind each chapter are published:
+
+- [**Core AI knowledge base**](https://john-rocky.github.io/coreai-model-zoo/) — the notes, a page
+  per topic: stateful KV cache, AOT and specialization, ANE vs GPU authoring rules, the
+  performance ceiling, custom Metal kernels. Where a chapter compresses a finding into a
+  paragraph, the note has the run that produced it.
+- [**coreai-model-zoo**](https://github.com/john-rocky/coreai-model-zoo) — 57 models, each with
+  the recipe that produced it and a card stating what was gated and on which hardware.
+- [**CoreAIKit**](https://github.com/john-rocky/coreai-kit) — run any of them from Swift in one
+  line, if you would rather use a model than convert one.
+
 ## License
 
 Text © the author. Code snippets are provided under the MIT license.

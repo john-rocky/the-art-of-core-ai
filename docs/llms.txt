@@ -24,7 +24,8 @@
 
 ## Related projects by the same author
 
-- [coreai-model-zoo](https://github.com/john-rocky/coreai-model-zoo): 49 models converted to Core AI, device-verified, with conversion recipes and benchmarks
+- [Core AI knowledge base](https://john-rocky.github.io/coreai-model-zoo/): the measurements this book was written from, as a page per topic — stateful KV cache, AOT and specialization, ANE vs GPU authoring rules, custom Metal kernels. Plain HTML, readable without JavaScript, unlike Apple's own Core AI documentation
+- [coreai-model-zoo](https://github.com/john-rocky/coreai-model-zoo): 57 models converted to Core AI, each gated against its source model, with the recipe that produced it
 - [coreai-kit](https://github.com/john-rocky/coreai-kit): run any zoo model in one line of Swift; FoundationModels-compatible
 - [awesome-core-ai](https://github.com/john-rocky/awesome-core-ai): curated Core AI ecosystem resources
 - [Hugging Face models](https://huggingface.co/mlboydaisuke): downloadable .aimodel bundles
